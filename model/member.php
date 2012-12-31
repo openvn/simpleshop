@@ -67,7 +67,7 @@ class Member implements Entity {
      * return the encrypted password
      * @return string
      */
-    function getPassEncrypted() {
+    function getPassHashed() {
         return $this->mem_pass;
     }
 
@@ -260,7 +260,19 @@ class Member implements Entity {
             `mem_level`, `mem_point`, `mem_phone`, `mem_address`, `mem_gender`, `mem_birth` FROM `members`
             WHERE `mem_id` = %d;", (int) $id);
     }
-
+    public static function toSelectByIdEmail($email) {
+        return sprintf("SELECT `mem_id`, `mem_email`, `mem_pass`, `mem_first_name`, `mem_last_name`,
+            `mem_level`, `mem_point`, `mem_phone`, `mem_address`, `mem_gender`, `mem_birth` FROM `members`
+            WHERE `mem_email` = '%s';",
+                addcslashes(mysql_real_escape_string($email), '%_'));
+    }
+    public static function toSelectByIdPassword($email, $pass) {
+        return sprintf("SELECT `mem_id`, `mem_email`, `mem_pass`, `mem_first_name`, `mem_last_name`,
+            `mem_level`, `mem_point`, `mem_phone`, `mem_address`, `mem_gender`, `mem_birth` FROM `members`
+            WHERE `mem_email` = '%s' AND `mem_pass` = '%s';",
+                addcslashes(mysql_real_escape_string($email), '%_'),
+                addcslashes(mysql_real_escape_string($pass), '%_'));
+    }
 }
 
 ?>

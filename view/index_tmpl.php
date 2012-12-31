@@ -6,5 +6,5 @@ foreach ($products as $key => $val) {
         <p>'.$val->getDescription().'</p>
         <a href="'. HREF('product', 'view', array('id' => $val->getId()), LoadSetting('url_pretty')).'"><span class="button">Read more</span></a>
       </section>';
-}
+}echo $new2;
 ?>

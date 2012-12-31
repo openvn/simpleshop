@@ -15,7 +15,7 @@ function HREF($controller, $action, $query, $pretty) {
             return $src;
         }
         foreach ($query as $key => $val) {
-            $src .= $key.'/'.$val.'/';
+            $src .= '&'.$key.'='.$val;
         }
         return $src;
     }

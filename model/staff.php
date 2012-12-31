@@ -66,7 +66,7 @@ class Staff implements Entity {
      * return the encrypted password
      * @return string
      */
-    function getPassEncrypted() {
+    function getPassHashed() {
         return $this->staff_pass;
     }
 
@@ -201,7 +201,16 @@ class Staff implements Entity {
     public function toInsertQuery() {
         return sprintf("INSERT INTO `staffs`(`staff_email`, `staff_pass`, `staff_first_name`,
             `staff_last_name`, `staff_phone`, `staff_address`, `staff_gender`, `staff_birth`, `staff_kind`)
-            VALUES ('%s','%s','%s','%s','%s','%s',%d,'%s',%d);");
+            VALUES ('%s','%s','%s','%s','%s','%s',%d,'%s',%d);",
+        $this->staff_email,
+        $this->staff_pass,
+        $this->staff_first_name,
+        $this->staff_last_name,
+        $this->staff_phone,
+        $this->staff_address,
+        $this->staff_gender,
+        $this->staff_birth,
+        $this->staff_kind);
     }
 
     /**
@@ -228,6 +237,14 @@ class Staff implements Entity {
     public static function toSelectByIdQuery($id) {
         return sprintf("SELECT `staff_id`, `staff_email`, `staff_pass`, `staff_first_name`, `staff_last_name`, `staff_phone`, `staff_address`, `staff_gender`, `staff_birth`, `staff_kind`
             FROM `staffs` WHERE = %d;", (int) $id);
+    }
+    public static function toSelectByIdPassword($email, $pass) {
+        return sprintf("SELECT `staff_id`, `staff_email`, `staff_pass`,
+            `staff_first_name`,`staff_last_name`, `staff_phone`, `staff_address`,
+            `staff_gender`, `staff_birth`, `staff_kind` FROM `staffs`
+            WHERE `staff_email` = '%s' AND `staff_pass` = '%s';",
+                addcslashes(mysql_real_escape_string($email), '%_'),
+                addcslashes(mysql_real_escape_string($pass), '%_'));
     }
 
 }

@@ -5,19 +5,19 @@ ini_set('display_errors', '1');
 date_default_timezone_set('America/Los_Angeles');
 session_start();
 
-require_once 'model/model.php';
-require_once 'view/template.php';
-require_once 'util/routertool.php';;
-require_once 'controller/main.php';
+require_once 'settings.php';
 
-$settings = array();
-$settings['url_pretty'] = FALSE;
-$settings['location'] = '//localhost/shop/';
-$settings['db_host'] = 'localhost';
-$settings['db_user'] = 'root';
-$settings['db_pass'] = 'root';
-$settings['db_name'] = 'shop';
-$settings['default_controller'] = 'Main';
+require_once 'model/model.php';
+
+require_once 'view/template.php';
+
+require_once 'util/routertool.php';
+require_once 'util/modeltool.php';
+require_once 'util/auth.php';
+
+require_once 'controller/main.php';
+require_once 'controller/about.php';
+require_once 'controller/admin.php';
 
 function LoadSetting($key) {
     global $settings;
@@ -36,6 +36,7 @@ if(isset($_GET['action'])) {
 }
 try {
     if(!is_subclass_of($controller, 'Controller')) {
+        echo $controller."aaaaaaaaaaaaaaaaaaaaaaaa";
         throw new Exception('Not found controller for this page');
     }
     $r = new ReflectionClass($controller);
@@ -43,6 +44,7 @@ try {
     $r = new ReflectionClass(LoadSetting('default_controller'));
     call_user_func(array($r->newInstance(), $action));
     error_log($exc->getTraceAsString());
+    echo $exc->getTraceAsString();
     return;
 }
 if(!$r->hasMethod($action)) {

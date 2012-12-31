@@ -22,6 +22,8 @@ class Template {
     static $DealDetail = 'deal_detail_tmpl.php';
     static $TicketList = 'ticket_list_tmpl.php';
     static $TicketDetail = 'ticket_detail_tmpl.php';
+    //cmponent
+    static $LogginForm = 'form_loggin_tmpl.php';
 
     public function Header($title) {
         echo '<!doctype html>  

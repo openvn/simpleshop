@@ -19,13 +19,17 @@ class Main extends Controller {
         }
         $products = $this->db->RecentProducts(9);
         if($products) {
-            $data = array('products' => $products);
+            $data = array('products' => $products, 'newvar' => 'aaaaasdsddssa');
+            $data['new2'] = 'vvvvvvvvvv';
             $this->tmpl->Content(Template::$Index, $data);
         }
         $this->tmpl->Footer();
     }
     public function Dog() {
         echo 'dogggggggg!';
+    }
+    public function Cat() {
+        echo 'cqqqqqqqqqqqqqqqqt';
     }
 }
 ?>

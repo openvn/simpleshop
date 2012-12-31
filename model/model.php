@@ -311,6 +311,37 @@ class Model {
         $this->err = $this->conn->error;
         return false;          
     }
+    /**
+     * 
+     * @param string $mem_email
+     * @param string $mem_passHashed
+     * @return boolean
+     */
+    function FindMember($mem_email, $mem_passHashed) {
+        $result = $this->conn->query(Member::toSelectByIdPassword($mem_email, $mem_passHashed));
+        if ($result) {
+            if(!$result->num_rows) {
+                $this->err = 'Entity not found';
+                return FALSE;
+            }
+            return $result->fetch_object('Member');
+        }
+        $this->err = $this->conn->error;
+        return FALSE; 
+    }
+    
+    function FindStaff($staff_email, $staff_passHashed) {
+         $result = $this->conn->query(Staff::toSelectByIdPassword($staff_email, $staff_passHashed));
+        if ($result) {
+            if(!$result->num_rows) {
+                $this->err = 'Entity not found';
+                return FALSE;
+            }
+            return $result->fetch_object('Staff');
+        }
+        $this->err = $this->conn->error;
+        return FALSE;        
+    }
 } 
 
 ?>
