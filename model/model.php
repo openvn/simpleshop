@@ -342,6 +342,10 @@ class Model {
         $this->err = $this->conn->error;
         return FALSE;        
     }
+    
+    function ProductsFilter($price1, $price2, $sim, $touch, $camera, $wifi, $g3, $cat) {
+        
+    }
 } 
 
 ?>

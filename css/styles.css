@@ -601,3 +601,9 @@ nav ul li a:hover{
 	left:980px;
 	top:-85px;
 }
+
+.content {
+    clear: both;
+    padding-top: 20px;
+    background-color: white;
+}

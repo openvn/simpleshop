@@ -24,7 +24,10 @@ class Template {
     static $TicketDetail = 'ticket_detail_tmpl.php';
     //cmponent
     static $LogginForm = 'form_loggin_tmpl.php';
-
+    /**
+     * Header call the HTML code for header
+     * @param string $title
+     */
     public function Header($title) {
         echo '<!doctype html>  
 <head>
@@ -71,7 +74,9 @@ class Template {
       <!--end header-->
     </header>';
     }
-
+    /**
+     * Footer call the HTML code for footer
+     */
     public function Footer() {
         echo '  </div>
             <!--end container-->
@@ -108,7 +113,7 @@ class Template {
     }
     
     /**
-     * 
+     * Menu call HTML code for drop-down menu
      * @param Category[] $cats
      */
     public function Menu($cats) {
@@ -139,7 +144,7 @@ class Template {
     <!--end menu-->';
     }
     /**
-     * 
+     * Announcement call the html code for Announcement
      * @param Announcement $ann
      */
     public function Announcement(Announcement $ann) {
@@ -184,7 +189,7 @@ class Template {
                 LoadSetting('url_pretty')) . '">Loggin</a></li>';;
     }
     /**
-     * 
+     * Content cal the HTML code for the template named with $view, the keys of $data will be the var name in template
      * @param string $view
      * @param array $data
      */

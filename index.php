@@ -10,15 +10,22 @@ require_once 'settings.php';
 require_once 'model/model.php';
 
 require_once 'view/template.php';
-
+//require the util tools so we can use it for all file
 require_once 'util/routertool.php';
 require_once 'util/modeltool.php';
 require_once 'util/auth.php';
-
+//require all the controller
+//All the controller need to be here for the reflection
 require_once 'controller/main.php';
 require_once 'controller/about.php';
 require_once 'controller/admin.php';
 
+/**
+ * LoadSetting use to load setting in settings.php
+ * @global type $settings
+ * @param type $key
+ * @return null
+ */
 function LoadSetting($key) {
     global $settings;
     if(isset($settings[$key])) {
@@ -26,6 +33,7 @@ function LoadSetting($key) {
     }
     return NULL;
 }
+
 $controller = LoadSetting('default_controller');
 $action = 'Index';
 if(isset($_GET['controller'])) {
@@ -36,7 +44,6 @@ if(isset($_GET['action'])) {
 }
 try {
     if(!is_subclass_of($controller, 'Controller')) {
-        echo $controller."aaaaaaaaaaaaaaaaaaaaaaaa";
         throw new Exception('Not found controller for this page');
     }
     $r = new ReflectionClass($controller);

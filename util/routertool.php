@@ -7,8 +7,11 @@
  * @param boolean $pretty
  * @return string
  */
-function HREF($controller, $action, $query, $pretty) {
+function HREF($controller, $action, $query = NULL, $pretty = NULL) {
     $root = LoadSetting('location');
+    if($pretty == NULL) {
+        $pretty = LoadSetting('url_pretty');
+    }
     if($pretty) {
         $src = $root.$controller.'/'.$action.'/';
         if(is_null($query) || count($query) < 1) {

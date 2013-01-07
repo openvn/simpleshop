@@ -122,6 +122,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `pro_vote` int(11) NOT NULL DEFAULT '0',
   `pro_available` int(11) NOT NULL DEFAULT '0',
   `pro_price` int(11) NOT NULL DEFAULT '0',
+  `pro_sim` int(11) NOT NULL DEFAULT '0',
+  `pro_touch` tinyint(1) NOT NULL DEFAULT '0',
+  `pro_camera` tinyint(1) NOT NULL DEFAULT '0',
+  `pro_wifi` tinyint(1) NOT NULL DEFAULT '0',
+  `pro_3g` tinyint(1) NOT NULL DEFAULT '0',
   `cat_id` int(11) NOT NULL,
   PRIMARY KEY (`pro_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
