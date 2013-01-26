@@ -19,6 +19,8 @@ require_once 'util/auth.php';
 require_once 'controller/main.php';
 require_once 'controller/about.php';
 require_once 'controller/admin.php';
+require_once 'controller/viewproduct.php';
+require_once 'controller/user.php';
 
 /**
  * LoadSetting use to load setting in settings.php

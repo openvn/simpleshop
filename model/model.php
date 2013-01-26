@@ -245,6 +245,27 @@ class Model {
     }
     /**
      * 
+     * @return Ticket[]|boolean
+     */
+    function AllTicket() {
+        $result = $this->conn->query("SELECT `tic_id`, `tic_content`, `tic_type`, `tic_parent`, `mem_id`
+            FROM `tickets`;");
+        if ($result) {
+            if(!$result->num_rows) {
+                $this->err = 'Entity not found';
+                return FALSE;
+            }
+            $arr = array();
+            while ($obj = $result->fetch_object('Ticket')) {
+                $arr[] = $obj;
+            }
+            return $arr;
+        }
+        $this->err = $this->conn->error;
+        return FALSE;        
+    }
+    /**
+     * 
      * @param int $num
      * @return Deal[]boolean
      */
@@ -343,8 +364,26 @@ class Model {
         return FALSE;        
     }
     
-    function ProductsFilter($price1, $price2, $sim, $touch, $camera, $wifi, $g3, $cat) {
-        
+    function ProductsFilter($price1, $price2, $sim, $touch, $camera, $wifi, $g3, $cat, $offset, $num) {
+
+        $result = $this->conn->query("SELECT * FROM `products` WHERE pro_price >= '".$price1."' and pro_price <= '".$price2."' 
+                and pro_sim = '".$sim."' and pro_touch = '".$touch."' 
+                and pro_camera = ".$camera." and pro_wifi = ".$wifi." 
+                and pro_3g = ".$g3." and cat_id = ".$cat."
+            LIMIT ". (int) $num."  OFFSET ".(int)$offset);
+        if ($result) {
+            if(!$result->num_rows) {
+                $this->err = 'Entity not found';
+                return FALSE;
+            }
+            $arr = array();
+            while ($obj = $result->fetch_object('Product')) {
+                $arr[] = $obj;
+            }
+            return $arr;
+        }
+        $this->err = $this->conn->error;
+        return false;    
     }
 } 
 

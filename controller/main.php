@@ -5,7 +5,7 @@ require_once 'controller.php';
 class Main extends Controller {
     public function Index() {
         $this->tmpl->Header('Index');
-        $deals = $this->db->RecentDeals(3);
+        $deals = $this->db->RecentDeals(4);
         if($deals) {
             $this->tmpl->Deal($deals);
         }
@@ -17,10 +17,9 @@ class Main extends Controller {
         if($anns) {
             $this->tmpl->Announcement($anns[0]);
         }
-        $products = $this->db->RecentProducts(9);
+        $products = $this->db->RecentProducts(4);
         if($products) {
-            $data = array('products' => $products, 'newvar' => 'aaaaasdsddssa');
-            $data['new2'] = 'vvvvvvvvvv';
+            $data = array('products' => $products);
             $this->tmpl->Content(Template::$Index, $data);
         }
         $this->tmpl->Footer();

@@ -4,7 +4,7 @@ foreach ($products as $key => $val) {
         <h1>'.$val->getName().'</h1>
         <img src="'.stripcslashes($val->getThumb()).'" width="51" height="52" alt="icons" class="icons" />
         <p>'.$val->getDescription().'</p>
-        <a href="'. HREF('product', 'view', array('id' => $val->getId()), LoadSetting('url_pretty')).'"><span class="button">Read more</span></a>
+        <a href="'. HREF('ViewProduct', 'Detail', array('id' => $val->getId()), LoadSetting('url_pretty')).'"><span class="button">Read more</span></a>
       </section>';
-}echo $new2;
+}
 ?>

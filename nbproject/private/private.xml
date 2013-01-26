@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
+        <file>file:/home/nvcnvn/WorkSpace/php/controller/admin.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/admin_menu_tmpl.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/admin_add_product_tmpl.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/template.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/index_tmpl.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/index.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/controller/main.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/controller/user.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/controller/controller.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/ticket_post_tmpl.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/model/order.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/model/model.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/controller/viewproduct.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/view/form_register_tmpl.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/model/member.php</file>
+        <file>file:/home/nvcnvn/WorkSpace/php/model/entity.php</file>
+    </open-files>
 </project-private>

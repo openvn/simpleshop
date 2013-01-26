@@ -65,7 +65,7 @@ class Template {
       <!--start nav bar-->
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="'.  LoadSetting('location').'">Home</a></li>
           <li><a href="#">Contact</a></li>
           '. $this->LoginBar() .'
         </ul>
@@ -181,12 +181,12 @@ class Template {
     }
 
     public function LoginBar() {
-        if(isset($_SESSION['mem_email']) && isset($_SERVER['mem_id'])) {
-            return '<li><a href="' .HREF('profile', 'index',NULL,
-                    LoadSetting('url_pretty')) . '">'.$_SESSION['mem_email'].'</a></li>';
+        if(isset($_SESSION['mem_info'])) {
+            return '<li><a href="' .HREF('user', 'info') . '">Info</a></li>
+                <li><a href="' .HREF('user', 'loggout') . '">Loggout</a></li>';
         }
-        return '<li><a href="' .HREF('auth', 'loggin', NULL,
-                LoadSetting('url_pretty')) . '">Loggin</a></li>';;
+        return '<li><a href="' .HREF('user', 'loggin') . '">Loggin</a></li>
+            <li><a href="' .HREF('user', 'register') . '">Register</a></li>';
     }
     /**
      * Content cal the HTML code for the template named with $view, the keys of $data will be the var name in template

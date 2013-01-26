@@ -98,11 +98,10 @@ class Admin extends Controller {
             $thumb = time().'_'.$_FILES["file"]["name"];
             move_uploaded_file($_FILES["file"]["tmp_name"], LoadSetting('upload_folder').$thumb);
             $pro->setThumb(LoadSetting('location').'upload/'.$thumb);
-            echo LoadSetting('location').'upload/'.$thumb;
         }
         var_dump($_FILES['file']);
         if(!$this->db->InsertEntry($pro)) {
-            echo $this->db->Error();
+           
         }
     }
     
@@ -119,21 +118,39 @@ class Admin extends Controller {
             if(strlen($_POST['cat_name'])) {
                 $cat = new Category();
                 $cat->setName($_POST['cat_name']);
+                $cat->setMain(true);
                 if(!isset($_POST['cat_is_main'])) {
                     $cat->setMain(false);
                     $cat->setParent($_POST['cat_parent']);
                 }
-                $cat->setMain(true);
                 if($this->db->InsertEntry($cat)) {
                     $this->tmpl->Header('Insert thanh cong');
+                    $this->tmpl->Content('admin_add_cat2_tmpl.php', array('ok'=>true));
+                    $this->tmpl->Footer();
                 } else {
                     $this->tmpl->Header('Insert that bai');
                     $this->tmpl->Content('error_tmpl.php',
                             array('error' => $this->db->Error()));
+                    $this->tmpl->Content('admin_add_cat2_tmpl.php', array(
+                            'ok'=>false,
+                            'error'=>$this->db->Error()));
+                        $this->tmpl->Footer();
+                                
                 }
             }
         }
         $this->tmpl->Footer();
+    }
+    public function ViewAllTic(){
+        $this->tmpl->Header('Admin View');
+        
+            $this->tmpl->Content('admin_view_tic_tmpl.php', 
+                    array('view_all_tic_url'=>HREF('user', 'ticpost'),
+                               'tic'=> $this->db->AllTicket()));
+        $this->tmpl->Footer();
+    }
+    public function ViewTicByType(){
+        $this->tmpl->Header('View By Type');
     }
 }
 ?>
